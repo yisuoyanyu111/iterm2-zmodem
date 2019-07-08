@@ -20,10 +20,15 @@ if [[ $FILE = "" ]]; then
 	echo
 	echo \# Cancelled transfer
 else
-	cd "$FILE"
+	#echo "string : [${FILE}]"
+	# mac catalina beta bug fix，delete '/Users/apus/Documents:/' ':/'
+	lenNum=${#FILE}
+	lengthxx=`expr $lenNum - 2 `
+	FILEX=${FILE:0:${lengthxx}}
+	cd "$FILEX"
 	/usr/local/bin/rz -E -e -b --bufsize 4096
 	sleep 1
 	echo
 	echo
-	echo \# Sent \-\> $FILE
+	echo \# Sent \-\> $FILEX
 fi
